@@ -3,6 +3,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace CoreLayer.WebDriver
@@ -13,6 +14,7 @@ namespace CoreLayer.WebDriver
         {
             WaitForElementToBePresent(_driver, by, _timeout)?.Click();
         }
+
         public void EnterText(By by, string text)
         {
             var element = WaitForElementToBePresent(_driver, by, _timeout);
@@ -32,6 +34,31 @@ namespace CoreLayer.WebDriver
                 .SendKeys(textToSend)
                 .Perform();
         }
+
+        public void ClickAndSendBackspace(IWebElement element)
+        {
+            var actions = new Actions(_driver);
+            actions.Click(element)
+                   .Pause(TimeSpan.FromSeconds(1))
+                   .SendKeys(Keys.Backspace)
+                   .Perform();
+        }
+
+        public ReadOnlyCollection<IWebElement> FindElements(By by)
+        {
+            return _driver.FindElements(by);
+        }
+
+        public IWebElement FindElement(By by)
+        {
+            return _driver.FindElement(by);
+        }
+
+        public IList<IWebElement> GetAllElements()
+        {
+            return _driver.FindElements(By.CssSelector("*"));
+        }
+
         public IWebElement WaitForElementToBePresent(IWebDriver Driver, By by, TimeSpan _timeout)
         {
             var wait = new WebDriverWait(Driver, _timeout);
@@ -49,6 +76,54 @@ namespace CoreLayer.WebDriver
                 }
                 return null;
             });
+        }
+
+        //RE-WRITE this
+        //public void WaitForElementToBeInvisible(IWebDriver Driver, By by, TimeSpan _timeout)
+        //{
+        //    var wait = new WebDriverWait(Driver, _timeout);
+        //    wait.Until(drv =>
+        //    {
+        //        try
+        //        {
+        //            var element = drv.FindElement(by);
+        //            if (element == null && !element.Displayed) ;
+        //        }
+        //        catch (NoSuchElementException)
+        //        {
+        //            Console.WriteLine("WaitForElementToBeInvisible method: 'Element' is displayed.");
+        //        }
+        //    });
+        //}
+
+        public void WaitForElementToBeInvisible(IWebDriver driver, By by, TimeSpan timeout)
+        {
+            var wait = new WebDriverWait(driver, timeout);
+
+            try
+            {
+                wait.Until(drv =>
+                {
+                    try
+                    {
+                        var element = drv.FindElement(by);
+                        return !element.Displayed;
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        return true;
+                    }
+                    catch (StaleElementReferenceException)
+                    {
+                        return true;
+                    }
+                });
+            }
+            catch (WebDriverTimeoutException)
+            {
+                Console.WriteLine($"WaitForElementToBeInvisible method: Element located by '{by}' is still displayed after {timeout.TotalSeconds} seconds.");
+                throw;
+            }
         }
     }
 }

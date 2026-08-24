@@ -21,5 +21,4 @@ namespace BusinessLayer.Components
             return new SearchPanel(WebDriverWrapper);
         }
     }
-
 }

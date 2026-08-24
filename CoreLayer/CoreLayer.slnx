@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="../BusinessLayer/BusinessLayer.csproj" Id="49fcece7-ce4d-4044-b569-681c221d32ae" />
+  <Project Path="../TestLayer/TestLayer.csproj" Id="4b2dd665-cb81-4cc2-a0a6-1b0539cbaaca" />
   <Project Path="CoreLayer.csproj" />
 </Solution>

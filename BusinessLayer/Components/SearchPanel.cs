@@ -11,6 +11,8 @@ namespace BusinessLayer.Components
         private readonly By _searchPanel = By.ClassName("header-search__panel");
 
         private readonly By _findButton = By.XPath(".//*[@class='search-results__input-holder']/following-sibling::button");
+        public object Logger;
+
         protected WebDriverWrapper WebDriverWrapper { get; }
 
         public SearchPanel(WebDriverWrapper webDriverWrapper)

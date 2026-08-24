@@ -1,0 +1,18 @@
+﻿[
+  {
+    "TextToSearch": "Automation",
+    "SearchUrl": "search?q=Automation"
+  },
+  {
+    "TextToSearch": "Python",
+    "SearchUrl": "search?q=Python"
+  },
+  {
+    "TextToSearch": "BLOCKCHAIN",
+    "SearchUrl": "search?q=BLOCKCHAIN"
+  },
+  {
+    "TextToSearch": "Cloud",
+    "SearchUrl": "search?q=Cloud"
+  }
+]

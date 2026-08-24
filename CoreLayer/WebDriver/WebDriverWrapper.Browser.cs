@@ -29,7 +29,13 @@ namespace CoreLayer.WebDriver
         {
             _driver.Manage().Window.Maximize();
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWaitTime);
+
+            //try add cookies
+            //Cookie cookie1 = new Cookie("sa-user-id",);
+            //_driver.Manage().Cookies.AddCookie;
+
         }
+
 
         public void Close()
         {
