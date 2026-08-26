@@ -1,6 +1,7 @@
 ﻿using CoreLayer.WebDriver;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using Serilog.Parsing;
 using System;
 using System.Collections.Generic;
@@ -34,11 +35,6 @@ namespace BusinessLayer.Components
         {
             WebDriverWrapper.Click(_findCareerSearchButton);
         }
-
-        //public void DeselectLocations()
-        //{
-        //  WebDriverWrapper.Click(_deselectLocationsIcon.Enabled);
-        //}
 
         public void DeselectLocations()
         {

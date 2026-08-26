@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -36,7 +37,6 @@ namespace CoreLayer.WebDriver
 
         }
 
-
         public void Close()
         {
             _driver.Quit();
@@ -62,5 +62,6 @@ namespace CoreLayer.WebDriver
         {
             return _driver.Url;
         }
+
     }
 }
