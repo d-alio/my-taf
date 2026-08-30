@@ -1,10 +1,10 @@
-﻿using BusinessLayer.Pages;
+﻿using BusinessLayer.Components;
+using BusinessLayer.Pages;
 using CoreLayer;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SearchModel = TestLayer.Data.SearchModel;
+using NUnit.Framework.Legacy;
+using System.Text;
+
 //Test comment
 
 namespace TestLayer.Tests
@@ -15,6 +15,7 @@ namespace TestLayer.Tests
         private HomePage _homePage;
         private SearchResultPage _searchResultPage;
         private CareerPage _careerPage;
+        private CareerSearchBlock _careerSearchBlock;
 
         [SetUp]
         public override void SetUp()
@@ -23,6 +24,7 @@ namespace TestLayer.Tests
             _homePage = new HomePage(WebDriverWrapper);
             _searchResultPage = new SearchResultPage(WebDriverWrapper);
             _careerPage = new CareerPage(WebDriverWrapper);
+            _careerSearchBlock = new CareerSearchBlock(WebDriverWrapper);
         }
 
 
@@ -53,6 +55,7 @@ namespace TestLayer.Tests
             //Step 4: Unselect locations
             Logger.Information("Step 4 started: Unselect locations");
             _careerPage.CareerSearch.DeselectLocations();
+            _careerPage.WaitForUrl("/jobs?_gl=", true);
             Logger.Information("Passed: Unselect locations");
 
             //Step 5: Select 'Remote' option
@@ -80,21 +83,13 @@ namespace TestLayer.Tests
 
             //Step 9: Verify that search key is present on the page
             Logger.Information("Step 9 started: Page from the last search card is loaded");
-            var allElements = WebDriverWrapper.GetAllElements();
-            Logger.Information($"Step 9: All elements are count. Number of elements on page is {allElements.Count()}");
+            Logger.Information("Step 9: Page with job details is opened");
 
-            bool allContainText = false;
-            for (int i = 0; i < allElements.Count(); i++)
-            {
-                if (allElements[i].Text.Contains(textToFind, StringComparison.OrdinalIgnoreCase))
-                {
-                    allContainText = true;
-                    break;
-                }
-            }
-            Assert.That(allContainText, Is.True, $"Not all elements contain '{textToFind}'");
+            var fullPageText = _careerSearchBlock.CombineResultText();
+            Logger.Information("Step 9: Text from title and description is combined");
 
-
+            Assert.That(fullPageText, Does.ContainKey(textToFind), $"The combined page text did not contain the expected keyword: '{textToFind}'.");
+            
             Logger.Information("Ending the test 'SearchOnIndexPageTest'.");
         }
 

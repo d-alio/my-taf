@@ -24,6 +24,10 @@ namespace BusinessLayer.Pages
             CareerSearch = new CareerSearchBlock(webDriverWrapper);
         }
 
+        public void WaitForUrl(string urlPart, bool contains)
+        {
+            WebDriverWrapper.WaitUntilCondition(() => WebDriverWrapper.GetUrl().Contains(urlPart) == contains);
+        }
 
     }
 }

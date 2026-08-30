@@ -125,6 +125,12 @@ namespace CoreLayer.WebDriver
                 throw;
             }
         }
+
+        public void WaitUntilCondition(Func<bool> condition)
+        {
+            var wait = new WebDriverWait(_driver, _timeout);
+            wait.Until(_ => condition());
+        }
     }
 }
 

@@ -16,6 +16,8 @@ namespace BusinessLayer.Components
         private readonly By _findCareerSearchButton = By.Name("submit_search_box_button");
         private readonly By _findCareerSearchInput = By.CssSelector("input[placeholder='Search by Role or Keyword']");
         private readonly By _findLocationInput = By.CssSelector("input[aria-label='Choose your country']");
+        private readonly By _findResultPageContentDescription = By.CssSelector("[class*='JobDetails_main_']");
+        private readonly By _findResultPageTitle = By.CssSelector("h1[class*='JobDetailsBanner_title']");
 
         protected WebDriverWrapper WebDriverWrapper { get; }
 
@@ -46,6 +48,14 @@ namespace BusinessLayer.Components
         {
             WebDriverWrapper.FindElement(_findRemoteOptionCheckbox).Click();
             return;
+        }
+
+        public string CombineResultText()
+        {
+            var titleElement = WebDriverWrapper.FindElement(_findResultPageTitle);
+            var contentElement = WebDriverWrapper.FindElement(_findResultPageContentDescription);
+
+            return new string($"{titleElement.Text} {contentElement.Text}");
         }
     }
 }
