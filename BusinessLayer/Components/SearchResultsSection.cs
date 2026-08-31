@@ -15,7 +15,7 @@ namespace BusinessLayer.Components
         // private readonly By _resultsCounter = By.CssSelector("h2[class='search-results__counter']");
         private readonly By _searchResults = By.ClassName("search-results__item");
         private readonly By _findCareerResultCardTitle = By.CssSelector("[data-event-content*='title']");
-
+        private readonly By _emptySearchResultMessage = By.XPath("//div[contains(@class, 'search-results--empty-result') and contains(text(), 'no results')]");
 
         protected WebDriverWrapper WebDriverWrapper { get; }
         
@@ -48,6 +48,11 @@ namespace BusinessLayer.Components
                 CareerResultsTitleList[orderNumber].Click();
             }
             return;
+        }
+
+        public IWebElement NoResultExceptionMessage()
+        {
+            return WebDriverWrapper.FindElement(_emptySearchResultMessage);
         }
     }
 }

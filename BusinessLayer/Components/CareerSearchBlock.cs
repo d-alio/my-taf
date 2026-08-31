@@ -1,12 +1,5 @@
 ﻿using CoreLayer.WebDriver;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using Serilog.Parsing;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Linq;
 
 namespace BusinessLayer.Components
 {

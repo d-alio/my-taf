@@ -1,22 +1,27 @@
 ﻿[
     {
         "TextToSearch": "EpAM",
-        "SearchUrl": "search?q=EpAM"
+        "SearchUrl": "search?q=EpAM",
+        "JobKey": "devops"
     },
     {
         "TextToSearch": "Python",
-        "SearchUrl": "search?q=Python"
+        "SearchUrl": "search?q=Python",
+        "JobKey": "javascript"
     },
     {
         "TextToSearch": "BLOCKCHAIN",
-        "SearchUrl": "search?q=BLOCKCHAIN"
+        "SearchUrl": "search?q=BLOCKCHAIN",
+        "JobKey": "python"
     },
     {
         "TextToSearch": "qa",
-        "SearchUrl": "search?q=qa"
+        "SearchUrl": "search?q=qa",
+        "JobKey": "developer"
     },
     {
         "TextToSearch": "Engineer",
-        "SearchUrl": "search?q=Engineer"
+        "SearchUrl": "search?q=Engineer",
+        "JobKey": "Kubernetes"
     }
 ]
