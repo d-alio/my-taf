@@ -13,17 +13,19 @@ namespace BusinessLayer.Components
 
         private readonly By _findAcceptButton = By.CssSelector("div[id='onetrust-button-group'] button[id='onetrust-accept-btn-handler']");
 
+        private readonly TimeSpan _cookiesTimeout;
         protected WebDriverWrapper WebDriverWrapper { get; }
 
         public CookiesPopup(WebDriverWrapper webDriverWrapper)
         {
             WebDriverWrapper = webDriverWrapper;
+            _cookiesTimeout = TimeSpan.FromSeconds(5);
         }
 
         public void AcceptCookies()
         {
             WebDriverWrapper.Click(_findAcceptButton);
-            //WebDriverWrapper.
+            WebDriverWrapper.WaitForElementToBeInvisible(_findAcceptButton, _cookiesTimeout);
         }
 
     }

@@ -24,6 +24,7 @@ namespace BusinessLayer.Components
         {
             var searchInput = WebDriverWrapper.FindChildByName(_searchPanel, "q");
             WebDriverWrapper.ClickAndSendAction(searchInput, text);
+            WebDriverWrapper.ImplicitWaiter();
             return this;
         }
 

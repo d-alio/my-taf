@@ -24,6 +24,8 @@ namespace BusinessLayer.Components
             {
                 if (link.Text.Trim().Equals(linkText, StringComparison.OrdinalIgnoreCase))
                 {
+                    //WebDriverWrapper.WaitForElementToBePresent(_findMenuLinks, TimeSpan.FromSeconds(5));
+                    WebDriverWrapper.WaitForElementToBecomeClickable(_findMenuLinks);
                     link.Click();
                     return;
                 }

@@ -10,5 +10,7 @@ namespace BusinessLayer.Pages
         protected WebDriverWrapper WebDriverWrapper { get; }
 
         protected BasePage(WebDriverWrapper webDriverWrapper) => WebDriverWrapper = webDriverWrapper;
+
+
     }
 }

@@ -6,12 +6,13 @@ namespace BusinessLayer.Pages
 {
     public class CareerPage : BasePage
     {
+        private readonly By _findStartYourSearchButton = By.CssSelector("a[href='https://careers.epam.com/en/jobs/?utm_medium=internal&utm_campaign=ta&utm_source=www.epam.com&utm_term=start-your-search-here&utm_content=job-search']");
         public SearchPanel SearchPanel { get; }
         public Header Header { get; }
         public CookiesPopup Cookies { get; }
         public HeaderMenu HeaderMenu { get; }
-        public FindYourCareerButton FindYourCareerButton { get; }
-        public CareerSearchBlock CareerSearch { get; } 
+        //public FindYourCareerButton FindYourCareerButton { get; }
+        public CareerSearchBlock CareerSearchBlock { get; } 
 
 
         public CareerPage(WebDriverWrapper webDriverWrapper) : base(webDriverWrapper)
@@ -20,15 +21,25 @@ namespace BusinessLayer.Pages
             Header = new Header(webDriverWrapper);
             Cookies = new CookiesPopup(webDriverWrapper);
             HeaderMenu = new HeaderMenu(webDriverWrapper);
-            FindYourCareerButton = new FindYourCareerButton(webDriverWrapper);
-            CareerSearch = new CareerSearchBlock(webDriverWrapper);
+            
+            CareerSearchBlock = new CareerSearchBlock(webDriverWrapper);
         }
 
-        public void WaitForUrl(string urlPart, bool contains)
+
+        public void ClickFindCareerButton()
         {
-            WebDriverWrapper.WaitUntilCondition(() => WebDriverWrapper.GetUrl().Contains(urlPart) == contains);
+            WebDriverWrapper.Click(_findStartYourSearchButton);
+        }
+        public void WaitForFindCareerButton(int waitForSeconds)
+        {
+            WebDriverWrapper.WaitForElementToBePresent(_findStartYourSearchButton, TimeSpan.FromSeconds(waitForSeconds));
         }
 
+
+        public void WaitForCareerUrl(string careerUrlPart)
+        {
+            WebDriverWrapper.WaitForUrl(careerUrlPart, true);
+        }
     }
 }
 

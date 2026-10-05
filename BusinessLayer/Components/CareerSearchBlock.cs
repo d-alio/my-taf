@@ -23,23 +23,27 @@ namespace BusinessLayer.Components
         {
             var searchInput = WebDriverWrapper.FindElement(_findCareerSearchInput);
             WebDriverWrapper.ClickAndSendAction(searchInput, text);
+            WebDriverWrapper.ImplicitWaiter();
             return this;
         }
 
         public void ClickFindCareerButton()
         {
             WebDriverWrapper.Click(_findCareerSearchButton);
+            WebDriverWrapper.ImplicitWaiter();
         }
 
         public void DeselectLocations()
         {
             var locationInput = WebDriverWrapper.FindElement(_findLocationInput);
             WebDriverWrapper.ClickAndSendBackspace(locationInput);
+            WebDriverWrapper.ImplicitWaiter();
         }
 
         public void SelectRemoteCareerOption()
         {
             WebDriverWrapper.FindElement(_findRemoteOptionCheckbox).Click();
+            WebDriverWrapper.ImplicitWaiter();
             return;
         }
 
@@ -50,5 +54,6 @@ namespace BusinessLayer.Components
 
             return new string($"{titleElement.Text} {contentElement.Text}");
         }
+
     }
 }
