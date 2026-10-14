@@ -18,7 +18,10 @@ namespace CoreLayer.WebDriver
 
         private readonly IWebDriver _driver;
 
+        private readonly Waiters _waiters;
+
         private const int WaitTimeInSeconds = 20;
+
 
         public WebDriverWrapper(BrowserType browserType)
         {
@@ -29,7 +32,7 @@ namespace CoreLayer.WebDriver
         public void StartBrowser(int implicitWaitTime = 10)
         {
             _driver.Manage().Window.Maximize();
-            ImplicitWaiter(implicitWaitTime);
+            _waiters.ImplicitWaiter(implicitWaitTime);
 
             //try add cookies
             //Cookie cookie1 = new Cookie("sa-user-id",);

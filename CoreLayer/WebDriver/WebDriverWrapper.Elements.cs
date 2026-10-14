@@ -12,7 +12,7 @@ namespace CoreLayer.WebDriver
     {
         public void Click(By by)
         {
-            WaitForElementToBePresent(by, _timeout)?.Click();
+            _waiters.WaitForElementToBePresent(by, _timeout)?.Click();
             //WaitForElementToBecomeClickable(by);
             //var element = _driver.FindElement(by);
             //element.Click();
@@ -21,13 +21,13 @@ namespace CoreLayer.WebDriver
 
         public void EnterText(By by, string text)
         {
-            var element = WaitForElementToBePresent( by, _timeout);
+            var element = _waiters.WaitForElementToBePresent( by, _timeout);
             element.Clear();
             element.SendKeys(text);
         }
         public IWebElement FindChildByName(By byParent, string childName)
         {
-            var elementParent = WaitForElementToBePresent( byParent, _timeout);
+            var elementParent = _waiters.WaitForElementToBePresent( byParent, _timeout);
             return elementParent.FindElement(By.Name(childName));
         }
         public void ClickAndSendAction(IWebElement element, string textToSend)

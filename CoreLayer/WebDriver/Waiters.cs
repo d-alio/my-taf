@@ -6,8 +6,20 @@ using System.Text;
 
 namespace CoreLayer.WebDriver
 {
-    public partial class WebDriverWrapper
+    public class Waiters
     {
+        private readonly TimeSpan _timeout;
+
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWrapper _webDriverWrapper;
+
+        private const int WaitTimeInSeconds = 20;
+        public Waiters(BrowserType browserType)
+        {
+            _driver = WebDriverFactory.CreateWebDriver(browserType);
+            _timeout = TimeSpan.FromSeconds(WaitTimeInSeconds);
+        }
+
         public IWebElement WaitForElementToBePresent(By by, TimeSpan _timeout)
         {
             var wait = new WebDriverWait(_driver, _timeout);
@@ -65,7 +77,7 @@ namespace CoreLayer.WebDriver
 
         public void WaitForUrl(string urlPart, bool contains)
         {
-            WaitUntilCondition(() => GetUrl().Contains(urlPart) == contains);
+            WaitUntilCondition(() => _webDriverWrapper.WebDriverGetUrl().Contains(urlPart) == contains);
         }
 
         public void WaitForElementToBecomeClickable(By by)
