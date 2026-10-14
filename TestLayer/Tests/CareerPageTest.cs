@@ -38,6 +38,7 @@ namespace TestLayer.Tests
             Logger.Information("Step 1 started: Click on 'Careers' menu button.");
             _homePage.HeaderMenu.ClickMenuLink("Careers");
             _careerPage.WaitForCareerUrl("/careers");
+            //Step end should be skipped
             Logger.Information("Passed: 'Careers' page is opened.");
 
             // Step 2: Click on 'Start your search' button
