@@ -18,7 +18,7 @@ namespace CoreLayer.WebDriver
 
         private readonly IWebDriver _driver;
 
-        private const int WaitTimeInSeconds = 20;
+        private const int WaitTimeInSeconds = 25;
 
         public WebDriverWrapper(BrowserType browserType)
         {

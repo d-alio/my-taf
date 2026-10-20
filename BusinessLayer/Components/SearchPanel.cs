@@ -23,7 +23,7 @@ namespace BusinessLayer.Components
         public SearchPanel EnterSearchTextUsingActions(string text)
         {
             var searchInput = WebDriverWrapper.FindChildByName(_searchPanel, "q");
-            WebDriverWrapper.ClickAndSendAction(searchInput, text);
+            WebDriverWrapper.EnterText(searchInput, text);
             WebDriverWrapper.ImplicitWaiter();
             return this;
         }
@@ -31,6 +31,7 @@ namespace BusinessLayer.Components
         public void ClickFindButton()
         {
             WebDriverWrapper.Click(_findButton);
+            //WebDriverWrapper.WaitForElementToBePresent(_searchPanel, TimeSpan.FromSeconds(5));
         }
     }
 }

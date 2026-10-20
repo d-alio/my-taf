@@ -16,5 +16,10 @@ namespace BusinessLayer.Pages
             Header = new Header(webDriverWrapper);
             SearchResults = new SearchResultsSection(webDriverWrapper);
         }
+
+        public void WaitForSearchResultUrl(string searchUrlPart)
+        {
+            WebDriverWrapper.WaitForUrl(searchUrlPart, true);
+        }
     }
 }

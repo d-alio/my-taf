@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Components;
 using BusinessLayer.Pages;
 using CoreLayer;
+using CoreLayer.WebDriver;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using SearchModel = TestLayer.Data.SearchModel;
@@ -46,6 +47,7 @@ namespace TestLayer.Tests
 
             //Step 4: Check that URL with results contains the entered keys parameter
             Logger.Information($"Step 4 started: Check that URL with results contains the entered keys parameter '{textToFind}'");
+            _searchResultPage.WaitForSearchResultUrl(searchUrl);
             var currentUrl = WebDriverWrapper.GetUrl();
             Assert.That(currentUrl, Does.Contain(searchUrl));
             Logger.Information($"Passed: URL with results contains the entered keys parameter '{textToFind}'");
@@ -94,6 +96,7 @@ namespace TestLayer.Tests
 
             //Step 4: Check that URL with results contains the entered keys parameter
             Logger.Information($"Step 4 started: Check that URL with results contains the entered keys parameter '{searchModelItems.TextToSearch}'");
+            _searchResultPage.WaitForSearchResultUrl(searchModelItems.SearchUrl);
             var currentUrl = WebDriverWrapper.GetUrl();
             Assert.That(currentUrl, Does.Contain(searchModelItems.SearchUrl));
             Logger.Information($"Passed: URL with results contains the entered keys parameter '{searchModelItems.TextToSearch}'");

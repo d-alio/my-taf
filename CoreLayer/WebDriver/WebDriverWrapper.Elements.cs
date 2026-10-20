@@ -19,11 +19,11 @@ namespace CoreLayer.WebDriver
 
         }
 
-        public void EnterText(By by, string text)
+        public void EnterText(IWebElement webElement, string text)
         {
-            var element = WaitForElementToBePresent( by, _timeout);
-            element.Clear();
-            element.SendKeys(text);
+            //var element = WaitForElementToBePresent( by, _timeout);
+            webElement.Clear();
+            webElement.SendKeys(text);
         }
         public IWebElement FindChildByName(By byParent, string childName)
         {
@@ -34,7 +34,7 @@ namespace CoreLayer.WebDriver
         {
             var clickAndSendKeysActions = new Actions(_driver);
             clickAndSendKeysActions.Click(element)
-                .Pause(TimeSpan.FromSeconds(1))
+                .Pause(TimeSpan.FromSeconds(3))
                 .SendKeys(textToSend)
                 .Perform();
         }

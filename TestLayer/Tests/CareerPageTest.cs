@@ -28,7 +28,7 @@ namespace TestLayer.Tests
 
         //Please note that Key "Middle Automation Tester in Java" leads to failed testcase
 
-        [TestCase("Tester in JS")]
+        [TestCase("Engineer")]
         public void ValidateThatTheUserCanSearchForPositionBasedOnCriteria(string textToFind)
         {
             Logger.Information("Starting the test 'ValidateThatTheUserCanSearchForPositionBasedOnCriteria'.");
@@ -60,7 +60,8 @@ namespace TestLayer.Tests
             //Step 4: Unselect locations
             Logger.Information("Step 4 started: Unselect locations");
             _careerPage.CareerSearchBlock.DeselectLocations();
-            _careerPage.WaitForCareerUrl("/jobs?_gl=");
+            _careerPage.WaitForCareerUrl("/jobs?");
+            _careerPage.CareerSearchBlock.WaitForDropdownSelectedValue();
             Logger.Information("Passed: Unselect locations");
 
             //Step 5: Select 'Remote' option
@@ -134,7 +135,8 @@ namespace TestLayer.Tests
             //Step 4: Unselect locations
             Logger.Information("Step 4 started: Unselect locations");
             _careerPage.CareerSearchBlock.DeselectLocations();
-            _careerPage.WaitForCareerUrl("/jobs?_gl=");
+            _careerPage.WaitForCareerUrl("/jobs?");
+            _careerPage.CareerSearchBlock.WaitForDropdownSelectedValue();
             Logger.Information("Passed: Unselect locations");
 
             //Step 5: Select 'Remote' option

@@ -11,12 +11,19 @@ namespace BusinessLayer.Components
         private readonly By _findLocationInput = By.CssSelector("input[aria-label='Choose your country']");
         private readonly By _findResultPageContentDescription = By.CssSelector("[class*='JobDetails_main_']");
         private readonly By _findResultPageTitle = By.CssSelector("h1[class*='JobDetailsBanner_title']");
+        private readonly By _findDropdownSelectedValue = By.CssSelector("[data-testid='dropdown-value']");
 
         protected WebDriverWrapper WebDriverWrapper { get; }
 
         public CareerSearchBlock(WebDriverWrapper webDriverWrapper)
         {
             WebDriverWrapper = webDriverWrapper;
+        }
+
+        public void WaitForDropdownSelectedValue()
+        {
+            //var SelectedDropdown = WebDriverWrapper.FindElement(_findDropdownSelectedValue);
+            WebDriverWrapper.WaitForElementToBePresent(_findDropdownSelectedValue, TimeSpan.FromSeconds(5));
         }
 
         public CareerSearchBlock EnterCareerSearchTextUsingActions(string text)
@@ -42,6 +49,7 @@ namespace BusinessLayer.Components
 
         public void SelectRemoteCareerOption()
         {
+            WebDriverWrapper.ImplicitWaiter();
             WebDriverWrapper.FindElement(_findRemoteOptionCheckbox).Click();
             WebDriverWrapper.ImplicitWaiter();
             return;
